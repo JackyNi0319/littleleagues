@@ -1,0 +1,41 @@
+  /* no results on team */
+  body .no-results {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  main.no-results {
+    margin: 0 auto;
+    margin-top: 10vh;
+    text-align: center;
+  }
+  
+.no-results img {
+    max-width: 20vmax;
+    height: auto;
+}
+
+ .no-results h1 {
+    font-size: 36px;
+    margin-top: 0;
+  }
+  
+ .no-results p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  .no-results a {
+    color: #40b0dd;
+    font-size: 18px;
+    text-decoration: underline;
+
+  }
+  
+  .no-results  a:hover {
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+  }
