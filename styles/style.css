@@ -74,13 +74,24 @@ body {
   
   /* Main content */
   .bg-img-wrap {
-    background-image: url(images/basketball_bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
     height: auto;
     width: 100%;
     background-attachment: fixed;
+  }
+
+  .home-bg {
+    background-image: url(../images/basketball_bg.jpg);
+  }
+
+  .player-bg {
+    background-image: url(../images/basketball_bg_player.jpg);
+  }
+
+  .team-bg {
+    background-image: url(../images/basketball_bg_team.jpg);
   }
   
   main {
