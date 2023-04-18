@@ -32,7 +32,7 @@
           <li><a href="./">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#player">Players</a></li>
-          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#games">Games</a></li>
         </ul>
       </nav>
     </header>
@@ -56,7 +56,7 @@
               <thead>
                   <tr>
                   <th>Team</th>
-                  <th>Chamionships</th>
+                  <th>Championships</th>
                   <th>Wins</th>
                   <th>Losses</th>
                   </tr>
@@ -82,7 +82,7 @@
                 <tr>
                 <th>Name</th>
                 <th>Position</th>
-                <th>Chamionships</th>
+                <th>Championships</th>
                 <th>Assists</th>
                 <th>Rebounds</th>
                 <th>Games Played</th>
@@ -119,7 +119,7 @@
             </tbody>
           </table>
         </section>
-        <section id="schedule">
+        <section id="games">
           <h2>Recent Games</h2>
           <table>
             <thead>

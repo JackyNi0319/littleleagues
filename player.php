@@ -37,14 +37,13 @@
         <ul>
           <li><a href="./">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#player">Players</a></li>
-          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#stats">Stats</a></li>
         </ul>
       </nav>
     </header>
     <div class="bg-img-wrap player-bg">
         <main>
-            <section id="about">
+            <section id="about" style="margin-bottom:0;">
                 <figure class="portrait">
                     <figcaption>
                     <h2><?php echo $playerName; ?></h2>
@@ -60,7 +59,7 @@
                 </article>
                 <hr>
             </section>
-            <section>
+            <section id="stats">
             <h2><?php echo $playerName ?>'s Stats</h2>
             <table>
                 <thead>
@@ -68,7 +67,7 @@
                     <th>Position</th>
                     <th>Height</th>
                     <th>Weight</th>
-                    <th>Chamionships</th>
+                    <th>Championships</th>
                     <th>Assists</th>
                     <th>Rebounds</th>
                     <th>Games Played</th>

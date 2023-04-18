@@ -126,15 +126,24 @@ body {
   }
   
   table {
+    table-layout: fixed;
     border-collapse: collapse;
     width: 90%;
   }
   
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  table th::-webkit-scrollbar, table td::-webkit-scrollbar {
+    display: none;
+  }
+
   table th, table td {
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
     background-color: white;
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
   }
   
   table th {
@@ -238,6 +247,6 @@ body {
   }
 
   .team-logo-score img {
-    max-width: 8%;
+    max-width: 10%;
     padding-right: 10px;
   }
