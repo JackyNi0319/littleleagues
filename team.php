@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Little Leagues Basketball - Team</title>
+    <title>Little Leagues - Team</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="noresults.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/noresults.css">
   </head>
   <body>
-    <?php 
+  <?php 
       include_once "db_connect.php";
       //PERSON(Ssn, Nm, Dob, Address, Phone_no)
       // PERSONALSTATS(Ssn, Championships, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent)
       $formkeyword = $_GET["team"];
       $teamName = "";
 
-      if (!empty($formkeyword)) {
+      // if string, chars > 2; if number, num len > 0
+      if (!empty($formkeyword) && is_string($formkeyword) && strlen($formkeyword) > 2 || !empty($formkeyword) && is_numeric($formkeyword) && strlen($formkeyword) > 0) {
 
       $sql = "SELECT Team_name, Championships, Wins, Losses FROM TEAM WHERE Team_id LIKE '%" . $formkeyword . "%'" . " OR Team_name LIKE '%" . $formkeyword . "%'";
 
@@ -24,23 +25,29 @@
         while($row = $result->fetch_assoc()) {
           $teamName = $row["Team_name"];
       ?>
-
     <header>
-      <h1><a href="./"><img class="mascot" src="images/mascot.jpg">Little Leagues Basketball</a></h1>
+      <h1><a href="./"><img class="mascot" src="images/mascot.jpg">Little Leagues</a></h1>
       <nav>
         <ul>
           <li><a href="./">Home</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#player">Players</a></li>
           <li><a href="#schedule">Schedule</a></li>
-          <li><a href="#">Stats</a></li>
         </ul>
       </nav>
     </header>
     <main>
-      <section>
-        <h2>The <?php echo $teamName; ?></h2>
-        <p>We are a competitive basketball team dedicated to excellence on and off the court.</p>
-        <p>Our team is made up of talented players who work hard to achieve our goals.</p>
+      <section id="about">
+        <figure class="team-logo">
+          <img src="https://api.dicebear.com/6.x/identicon/svg?seed=<?php echo $teamName; ?>&backgroundType=gradientLinear&backgroundColor[]" alt="avatar" />
+          <figcaption>
+            <h2><?php echo $teamName; ?></h2>
+          </figcaption>
+        </figure>
+        <article class="left-align">
+          <p>Welcome to the <?php echo $teamName; ?>'s page! We are a group of dedicated players who are passionate about the game and committed to achieving success on the court. As a team, we pride ourselves on hard work, determination, and a never-give-up attitude. We believe that every player has something unique to contribute and that by working together, we can achieve our goals and reach new heights. </p>
+          <p> Our team is more than just a group of players. We are a tight-knit community that supports and encourages one another both on and off the court. We believe in sportsmanship, fair play, and respect for our opponents, coaches, and fans. We are constantly striving to improve our skills and tactics, always looking for new ways to outsmart and outplay our opponents. We know that success doesn't come easy, but we're willing to put in the hard work and dedication it takes to achieve it.</p>
+        </article>
       </section>
       <section>
         <h2>Team Stats</h2>
@@ -88,7 +95,7 @@
             <?php
               $sql = "SELECT Nm, Pos, PERSONAL_STATS.Championships, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent 
               FROM ((PERSONAL_STATS JOIN PLAYER ON PERSONAL_STATS.Ssn=PLAYER.Ssn) JOIN PERSON ON PLAYER.Ssn=PERSON.Ssn) JOIN TEAM ON PLAYER.TEAM_id=TEAM.TEAM_id 
-              WHERE TEAM.Team_id LIKE '%" . $formkeyword . "%' OR TEAM.Team_name LIKE '%" . $formkeyword . "%'";
+              WHERE TEAM.Team_id='%" . $formkeyword . "%' OR TEAM.Team_name LIKE '%" . $formkeyword . "%'";
 
               $result = $conn->query($sql);
               if ($result !== false && $result->num_rows > 0) {    
@@ -144,10 +151,10 @@
                             <td>" . $row["Stadium"] . "</td>
                             <td>" . $row["Dt"] . "</td>";
                     if ($row["Home_team"] == $teamName) {
-                        echo "<td>" . $row["Away_team"] . "</td>
+                        echo '<td class="team-logo-score"> <img src="https://api.dicebear.com/6.x/identicon/svg?seed=' . $row["Away_team"] . '&backgroundType=gradientLinear&backgroundColor[]" alt="avatar" />' . $row["Away_team"] . "</td>
                               <td> Home </td>";
                     } else {
-                      echo "<td>" . $row["Home_team"] . "</td>
+                      echo '<td class="team-logo-score"> <img src="https://api.dicebear.com/6.x/identicon/svg?seed=' . $row["Home_team"] . '&backgroundType=gradientLinear&backgroundColor[]" alt="avatar" />' . $row["Home_team"] . "</td>
                             <td> Away </td>";
                     }
                     echo "  <td>" . $row["Score"] . "</td>
@@ -162,12 +169,12 @@
       </section>
     </main>
     <footer>
-      <p>&copy; <?php echo date("Y"); ?> Little Leagues Basketball</p>
+      <p>&copy; <?php echo date("Y"); ?> Little Leagues</p>
     </footer>
     <?php
         } else {
     ?>
-  <main class="no-results">
+  <main class="no-results" style="background-color:white">
       <section>
         <img src="images/basketball_search.jpg" alt="basketball mascot">
         <h1>Sorry, no results found.</h1>
@@ -178,7 +185,7 @@
           }
         } else {
     ?>
-      <main class="no-results">
+      <main class="no-results" style="background-color:white">
       <section>
         <img src="images/basketball_search.jpg" alt="basketball mascot">
         <h1>Sorry, no results found.</h1>
@@ -189,5 +196,7 @@
         }
     ?>
     <?php $conn->close();?>
+
+    <script src="script."></script>
   </body>
 </html>
