@@ -11,7 +11,7 @@
     <?php 
       include_once "db_connect.php";
       //PERSON(Ssn, Nm, Dob, Address, Phone_no)
-      // PERSONALSTATS(Ssn, Championships, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent)
+      // PERSONALSTATS(Ssn, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent)
       // Player(Ssn, Playerid, Height, Weight, Pos, Jersey_no, Salary, Team_id, Agentssn)
       $formkeyword = $_GET["player"];
       $playerName = "";
@@ -20,7 +20,7 @@
       // if string, chars > 2; if number, num len > 0
       if (!empty($formkeyword) && is_string($formkeyword) && strlen($formkeyword) > 1 || !empty($formkeyword) && is_numeric($formkeyword) && strlen($formkeyword) > 2) {
 
-        $sql = "SELECT Nm, Address, Pos, Height, Weight, PERSONAL_STATS.Championships, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent, Team_name
+        $sql = "SELECT Nm, Address, Pos, Height, Weight, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent, Team_name
         FROM ((PERSONAL_STATS JOIN PLAYER ON PERSONAL_STATS.Ssn=PLAYER.Ssn) JOIN PERSON ON PLAYER.Ssn=PERSON.Ssn) JOIN TEAM ON PLAYER.TEAM_id=TEAM.TEAM_id 
         WHERE PLAYER.Playerid='%" . $formkeyword . "%' OR PERSON.Nm LIKE '%" . $formkeyword . "%'";
 
@@ -67,7 +67,6 @@
                     <th>Position</th>
                     <th>Height</th>
                     <th>Weight</th>
-                    <th>Championships</th>
                     <th>Assists</th>
                     <th>Rebounds</th>
                     <th>Games Played</th>
@@ -85,7 +84,6 @@
                         <td>" . $row["Pos"] . "</td>
                         <td>" . $heightImperial . " (" . $row["Height"] . "m)" . "</td>
                         <td>" . $weightImperial . " (" . $row["Weight"] . "kg)" . "</td>
-                        <td>" . $row["Championships"] . "</td>
                         <td>" . $row["Assists"] . "</td>
                         <td>" . $row["Rebounds"] . "</td>
                         <td>" . $row["Games_played"] . "</td>

@@ -11,14 +11,14 @@
   <?php 
       include_once "db_connect.php";
       //PERSON(Ssn, Nm, Dob, Address, Phone_no)
-      // PERSONALSTATS(Ssn, Championships, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent)
+      // PERSONALSTATS(Ssn, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent)
       $formkeyword = $_GET["team"];
       $teamName = "";
 
       // if string, chars > 2; if number, num len > 0
       if (!empty($formkeyword) && is_string($formkeyword) && strlen($formkeyword) > 2 || !empty($formkeyword) && is_numeric($formkeyword) && strlen($formkeyword) > 0) {
 
-      $sql = "SELECT Team_name, Championships, Wins, Losses FROM TEAM WHERE Team_id LIKE '%" . $formkeyword . "%'" . " OR Team_name LIKE '%" . $formkeyword . "%'";
+      $sql = "SELECT Team_name, Wins, Losses FROM TEAM WHERE Team_id LIKE '%" . $formkeyword . "%'" . " OR Team_name LIKE '%" . $formkeyword . "%'";
 
       $result = $conn->query($sql);
       if ($result !== false && $result->num_rows > 0) {
@@ -56,7 +56,6 @@
               <thead>
                   <tr>
                   <th>Team</th>
-                  <th>Championships</th>
                   <th>Wins</th>
                   <th>Losses</th>
                   </tr>
@@ -66,7 +65,6 @@
                       // output data of each row
                         echo "<tr>
                                 <td>" . $row["Team_name"] . "</td>
-                                <td>" . $row["Championships"] . "</td>
                                 <td>" . $row["Wins"] . "</td>
                                 <td>" . $row["Losses"] . "</td>
                             </tr>";
@@ -82,7 +80,6 @@
                 <tr>
                 <th>Name</th>
                 <th>Position</th>
-                <th>Championships</th>
                 <th>Assists</th>
                 <th>Rebounds</th>
                 <th>Games Played</th>
@@ -93,7 +90,7 @@
             </thead>
             <tbody>
               <?php
-                $sql = "SELECT Nm, Pos, PERSONAL_STATS.Championships, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent
+                $sql = "SELECT Nm, Pos, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent
                 FROM ((PERSONAL_STATS JOIN PLAYER ON PERSONAL_STATS.Ssn=PLAYER.Ssn) JOIN PERSON ON PLAYER.Ssn=PERSON.Ssn) JOIN TEAM ON PLAYER.TEAM_id=TEAM.TEAM_id
                 WHERE TEAM.Team_id='%" . $formkeyword . "%' OR TEAM.Team_name LIKE '%" . $formkeyword . "%'";
                 $result = $conn->query($sql);
@@ -103,7 +100,6 @@
                       echo "<tr>
                               <td>" . $row["Nm"] . "</td>
                               <td>" . $row["Pos"] . "</td>
-                              <td>" . $row["Championships"] . "</td>
                               <td>" . $row["Assists"] . "</td>
                               <td>" . $row["Rebounds"] . "</td>
                               <td>" . $row["Games_played"] . "</td>
