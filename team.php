@@ -12,7 +12,7 @@
       include_once "db_connect.php";
       //PERSON(Ssn, Nm, Dob, Address, Phone_no)
       // PERSONALSTATS(Ssn, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent)
-      $formkeyword = $_GET["team"];
+      $formkeyword = $mysqli->real_escape_string($_GET["team"]);
       $teamName = "";
 
       // if string, chars > 2; if number, num len > 0

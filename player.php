@@ -13,7 +13,7 @@
       //PERSON(Ssn, Nm, Dob, Address, Phone_no)
       // PERSONALSTATS(Ssn, Assists, Rebounds, Games_played, Steals, Shoot_percent, Free_throw_percent)
       // Player(Ssn, Playerid, Height, Weight, Pos, Jersey_no, Salary, Team_id, Agentssn)
-      $formkeyword = $_GET["player"];
+      $formkeyword = $mysqli->real_escape_string($_GET["player"]);
       $playerName = "";
       $teamName = "";
 
