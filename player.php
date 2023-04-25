@@ -108,7 +108,7 @@
       <section>
         <img src="images/basketball_search.jpg" alt="basketball mascot">
         <h1>Sorry, no results found.</h1>
-        <p>We could not find any results for the team you're looking for. Please try searching for another team at the</br><a href="./">homepage</a>.</p>
+        <p>We could not find any results for the player you're looking for. Please try searching for another player at the</br><a href="./">homepage</a>.</p>
       </section>
     </main>
     <?php
@@ -119,7 +119,7 @@
       <section>
         <img src="images/basketball_search.jpg" alt="basketball mascot">
         <h1>Sorry, no results found.</h1>
-        <p>We could not find any results for the team you're looking for. Please try searching for another team at the</br><a href="./">homepage</a>.</p>
+        <p>We could not find any results for the player you're looking for. Please try searching for another player at the</br><a href="./">homepage</a>.</p>
       </section>
     </main>
     <?php
